@@ -15,7 +15,7 @@ A4／10pt／二段（22 文字 × 48 行の目安）. 見出し・キャプシ�
 - [ビルド方法（コンパイル）](#ビルド方法コンパイル)
 - [本文の書き方](#本文の書き方)
 - [図・表の挿入](#図表の挿入)
-- [参照（\refFig, \refEq, \refTab, \refSec）](#参照-reffig-refeq-reftab-refsec)
+- [参照（\refFig, \refFigure \refEq, \refTab, \refSec）](#参照-reffig-reffigure-refeq-reftab-refsec)
 - [参考文献の書き方](#参考文献の書き方)
 - [章・節の入れ方](#章節の入れ方)
 - [Tips / よくある質問](#tips--よくある質問)
@@ -44,7 +44,7 @@ A4／10pt／二段（22 文字 × 48 行の目安）. 見出し・キャプシ�
 - `ltjsarticle` による **日本語二段組**
 - **フォント自動切替**（Times New Roman / TeX Gyre Termes, 和文は HaranoAji / ヒラギノ / IPAex）
 - 余白・行送り・段間・キャプション・ラベル表記（`Fig.` / `Table`）を学会体裁に合わせて調整
-- `\refFig`, `\refEq`, `\refTab`, `\refSec` の **参照マクロ**
+- `\refFig`, `\refFigure`, `\refEq`, `\refTab`, `\refSec` の **参照マクロ**
 - 表づくりを助ける `booktabs`, `siunitx`, `threeparttable`
 - `cite` による **数値引用**（全角括弧対応）
 - 1 ページ目だけフッタを切り替えるページスタイル（事務局名・連絡先）
@@ -174,26 +174,28 @@ lualatex genkou4.tex
 
 ---
 
-## 参照（`\refFig`, `\refEq`, `\refTab`, `\refSec`）
+## 参照（`\refFig`, `\refFigure`, `\refEq`, `\refTab`, `\refSec`）
 
 テンプレで次の参照マクロを定義しています. 
 
 - `\refSec{<label>}` → “Section 1”
 - `\refFig{<label>}` → “Fig. 1”
+- - `\refFigure{<label>}` → “Figure 1”
 - `\refTab{<label>}` → “Table 1”
 - `\refEq{<label>}` → “Eq. (1)”
 
 **例：**
 ```latex
 % 図を参照
-As shown in \refFig{fig:voigt}, ...
+\refFigure{fig:voigt}に示すように
+\refFig{fig:voigt}に示す.
 
 % 式のラベルと参照
 \begin{equation}
   \bm F_n = \bigl(k_n\,\delta_n - \gamma_n\, v_n\bigr)\,\bm n .
   \label{eq:Fn}
 \end{equation}
-The normal force is given by \refEq{eq:Fn}.
+法線方向の力は\refEq{eq:Fn}で与えられる.
 
 % 表・節の参照
 See parameters in \refTab{tab:params} and details in \refSec{sec:method}.
