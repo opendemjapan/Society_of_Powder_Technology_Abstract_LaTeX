@@ -72,8 +72,6 @@ sudo apt-get install texlive-full
 ├─ main.tex            # あなたの論文本文（例：このリポのテンプレート）
 ├─ img/                # 図版フォルダ（\graphicspath{ {img/} } 済）
 │  └─ voigt_model.pdf  # 図の例
-├─ refs.bib            # （任意）BibTeX 用の参考文献DB
-├─ latexmkrc           # （任意）latexmk 設定
 └─ README.md
 ```
 
