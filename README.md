@@ -51,10 +51,8 @@ A4／10pt／二段（22 文字 × 48 行の目安）. 見出し・キャプシ�
 
 ![Word と LaTeX の体裁比較](比較.png)
 
-*Fig. 1. Word と LaTeX の体裁比較*
 ![LaTeXの表現例](例2ページ.png)
 
-*Fig. 2. Word と LaTeX の体裁比較*
 ---
 
 ## 動作要件
