@@ -1,8 +1,8 @@
-# README
+# 粉体工学会 講演要旨 非公式 LaTeX フォーマット
 
-粉体工学会（SPTJ）の **Word 体裁を LaTeX（LuaLaTeX + LuaTeX-ja）で再現**したテンプレートです。  
-A4／10pt／二段（22 文字 × 48 行の目安）。見出し・キャプション・フッタなどの見た目をまとめて設定しています。  
-**LuaLaTeX 専用**です（`ltjsarticle` 使用）。
+粉体工学会（SPTJ）の Word 体裁を **LaTeX（LuaLaTeX + LuaTeX-ja）で忠実再現**したテンプレートです.   
+A4／10pt／二段（22 文字 × 48 行基準）, 見出し・キャプション・フッタなどをスタイル一括指定しています.   
+**LuaLaTeX 専用**です（`ltjsarticle` 使用）. 
 
 ---
 
@@ -22,25 +22,40 @@ A4／10pt／二段（22 文字 × 48 行の目安）。見出し・キャプシ�
 - [ライセンス](#ライセンス)
 
 ---
+## LaTeX で作成する理由
+粉体工学会の Word 体裁を, LuaLaTeX と LuaTeX-ja で忠実に再現するフォーマットを有志で作成しました. これは単なるテンプレートではありません. 論文作成を道具の不安定さから解き放ちたい――その意思表示です. 率直に言えば, Word は学術論文に向いていません. 図表・数式・参考文献といった基盤で, 私はあまりにも多くの時間と注意力を失いました. 
+
+まず参照です. 節や図表の位置を少し動かしただけでリンクが壊れ, 図表番号が更新されない場面に何度も遭遇しました. 共同編集では環境差が平然と紛れ込み, 本文に「図 3」と書いてあるのに実体は図 2, という事故が起きます. 版が進むほど整合性チェックのクリック作業が積み上がり, 提出直前まで神経を削ります. これは執筆ではなく, 復旧作業です. 
+
+数式も悩ましいところでした. 上付き・下付きが小さく, 行間や字面のバランスが崩れ, 複雑な分数や行列ほど読みにくくなります. ページをまたぐと式番号の位置が揺れ, 主張の可読性が落ちます. 参考文献も同様で, 引用順を入れ替えたのに番号が揃わない, といった齟齬が平気で起きます. 本来は仕様で機械的に保証されるべき部分が, 人間の手作業に委ねられていると感じます. 
+
+レイアウトは非決定的です. 同じファイルでも端末が変わるだけで改ページや段組がずれ, 見出しやキャプションが孤立します. 図のアンカーは些細な編集で暴れ, 本文との距離が勝手に開きます. 形式が混在したファイルは保存や貼り付けのたびに挙動が重くなり, 最悪は固まります. 「同じ入力から同じ出力が得られるのか」という基本的な信頼が揺らぎます. 形式が混在したファイルは保存や貼り付けのたびに挙動が重くなり, 最悪は突然落ちます。有償ソフトのくせに, ここまで基本的な安定性を信頼できない状況に何度も悩まされました.
+
+だから私は LaTeX を使っています. 余白・行送り・段間・キャプション・ラベル・フォントといった仕様をプリアンブルで固定します. 本文は \label と \ref で参照を一貫させ, 図表・式・節番号は移動や追加・削除に自動で追随します. 引用もコマンドで一括管理し, 本文と末尾の対応がずれません. 数式は amsmath などの成熟した仕組みで字面と行間の均衡が保たれ, 読みやすさと美しさが両立します. 入力が同じなら, どこでビルドしても同じ PDF が得られます. 
+
+このフォーマットは, 怒りから生まれました. 論文の価値は内容にあり, 体裁は機械が守るべきです. にもかかわらず, 私は長く, 図表番号の手直しや参照の突合, 崩れるレイアウトの鎮火に時間を奪われてきました. Word の運任せな組版から降り, 体裁を仕様として固定し, LaTeX で共有する道を選びます. 論文は内容で戦い, 体裁は機械に任せる. その当たり前を取り戻したくて, このフォーマットを置きます. 
+
+
+
 
 ## 特徴
 
-- `ltjsarticle` による **日本語二段組**
-- **フォント自動切替**（Times New Roman / TeX Gyre Termes、和文は HaranoAji / ヒラギノ / IPAex）
-- 余白・行送り・段間・キャプション・ラベル表記（`Fig.` / `Table`）を学会体裁に合わせて調整
-- `\refFig`, `\refEq`, `\refTab`, `\refSec` の **参照マクロ**
-- 表づくりを助ける `booktabs`, `siunitx`, `threeparttable`
+- `ltjsarticle` による **日本語二段組**テンプレート
+- **フォント自動切替**（Times New Roman / TeX Gyre Termes, 和文は HaranoAji / ヒラギノ / IPAex）
+- 余白・行送り・段間・キャプション・ラベル表記（`Fig.` / `Table`）を学会体裁に最適化
+- `\refFig`, `\refEq`, `\refTab`, `\refSec` による **参照マクロ**
+- `booktabs`, `siunitx`, `threeparttable` など表支援パッケージ
 - `cite` による **数値引用**（全角ブラケット対応）
-- 1 ページ目だけフッタを切り替えるページスタイル（事務局名・連絡先）
+- 1 ページ目のフッタ専用ページスタイル（事務局名・連絡先表示）
 
 ---
 
 ## 動作要件
 
-- **TeX Live 2022 以降**（できれば最新）
-  - エンジン：`lualatex`
-  - 主なパッケージ：`luatexja`, `luatexja-fontspec`, `fontspec`, `amsmath`, `amssymb`, `bm`, `cite`,  
-    `etoolbox`, `booktabs`, `siunitx`, `threeparttable`, `graphicx`, `caption`, `titlesec`, `fancyhdr`, `atbegshi`
+- **TeX Live 2022 以降**（推奨：最新）  
+  - `lualatex` / `latexmk`  
+  - パッケージ：`luatexja`, `luatexja-fontspec`, `fontspec`, `amsmath`, `amssymb`, `bm`, `cite`, `etoolbox`,  
+    `booktabs`, `siunitx`, `threeparttable`, `graphicx`, `caption`, `titlesec`, `fancyhdr`, `atbegshi`
 - OS：Windows / macOS / Linux
 
 ---
@@ -54,15 +69,15 @@ sudo tlmgr update --self --all
 ```
 
 ### Windows（TeX Live）
-1. TeX Live インストーラで「TeX Live（フル推奨）」を導入  
-2. 「TeX Live Manager」で更新（`tlmgr update --self --all`）
+1. TeX Live インストーラから「TeX Live（フル推奨）」を導入  
+2. 「TeX Live Manager」で `tlmgr update --self --all`
 
 ### Linux（Debian/Ubuntu 例）
 ```bash
 sudo apt-get install texlive-full
 ```
 
-> 日本語フォントは自動検出で HaranoAji／ヒラギノ／IPAex のいずれかを使います。
+> 日本語フォントは同梱の自動検出で HaranoAji／ヒラギノ／IPAex のいずれかを使います. 
 
 ---
 
@@ -70,34 +85,44 @@ sudo apt-get install texlive-full
 
 ```
 .
-├─ main.tex            # あなたの本文（このテンプレの例）
-├─ img/                # 図フォルダ（\graphicspath{ {img/} } 済）
+├─ main.tex            # あなたの論文本文（例：このリポのテンプレート）
+├─ img/                # 図版フォルダ（\graphicspath{ {img/} } 済）
 │  └─ voigt_model.pdf  # 図の例
+├─ refs.bib            # （任意）BibTeX 用の参考文献DB
+├─ latexmkrc           # （任意）latexmk 設定
 └─ README.md
 ```
 
-`main.tex` にテンプレのプリアンブルが入っています。
+`main.tex` に本テンプレートのプリアンブルが含まれています. 
 
 ---
 
 ## ビルド方法（コンパイル）
 
-**LuaLaTeX を 2 回**流してください（参照や目次を正しく更新するため）。
-
+### 1) 1 回だけコンパイル（試すだけ）
 ```bash
-lualatex -interaction=nonstopmode main.tex
 lualatex -interaction=nonstopmode main.tex
 ```
 
-出力：`main.pdf`
+### 2) 推奨：`latexmk`（自動再コンパイル・索引・参考文献対応）
+```bash
+latexmk -lualatex -interaction=nonstopmode -shell-escape main.tex
+```
+
+### 3) 生成物の掃除
+```bash
+latexmk -c
+# さらに PDF 以外を全消し
+latexmk -C
+```
 
 ---
 
 ## 本文の書き方
 
-- 二段組（`twocolumn`）が既定です。1 ページ目のヘッダ（研究報告・題目・著者）はテンプレ内のコマンドで出力します。
-- 英数字は半角、本文は 10pt、行数は 48 行の目安です。
-- 図は `img/` に置き、`\includegraphics{ファイル名}` で読み込みます。
+- 二段組（`twocolumn`）が既定です. 1 ページ目の二段ヘッダ（研究報告・題目・著者）はテンプレ内のコマンド群で出力. 
+- 英数字は半角, 本文は 10pt, 行数は 48 行基準. 
+- 図版は `img/` に置けば `\includegraphics{ファイル名}` で読み込めます. 
 
 **例：1 ページ目のヘッダ**
 ```latex
@@ -118,8 +143,8 @@ lualatex -interaction=nonstopmode main.tex
 
 ## 図・表の挿入
 
-### 単段幅の図（カラム幅）
-キャプション体裁をそろえるため、`captionof{figure}` を使った例です。
+### 単段幅の図（本文幅＝カラム幅）
+テンプレではキャプション体裁を統一するため, `captionof{figure}` を用いた例を示します. 
 ```latex
 \begin{center}
   \vspace*{.25\baselineskip}
@@ -127,6 +152,17 @@ lualatex -interaction=nonstopmode main.tex
   \captionof{figure}{Schematic of ...}
   \label{fig:voigt}
 \end{center}
+```
+
+### 二段貫通図（紙面幅いっぱい）
+LaTeX 標準の `figure*` も使えます. 
+```latex
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{big_figure}
+  \caption{Wide figure over two columns.}
+  \label{fig:wide}
+\end{figure*}
 ```
 
 ### 表（三線表 + 単位）
@@ -147,14 +183,14 @@ lualatex -interaction=nonstopmode main.tex
 \end{table}
 ```
 
-> `\figurename` は `Fig.`、`\tablename` は `Table` に統一しています。  
-> キャプションは「Fig. 1. …」「Table 1. …」の表記になります。
+> `\figurename` を `Fig.`, `\tablename` を `Table` に統一済み.   
+> キャプションは「Fig. 1. …」「Table 1. …」という英語風表記になります. 
 
 ---
 
 ## 参照（`\refFig`, `\refEq`, `\refTab`, `\refSec`）
 
-テンプレで次の参照マクロを定義しています。
+テンプレで以下の参照マクロを定義済みです：
 
 - `\refSec{<label>}` → “Section 2”
 - `\refFig{<label>}` → “Fig. 1”
@@ -181,14 +217,12 @@ See parameters in \refTab{tab:params} and details in \refSec{sec:method}.
 
 ## 参考文献の書き方
 
-### thebibliography（手書き・数値引用）
-既定は `\usepackage{cite}` による **数値引用**です（全角ブラケット対応）。
-
-本文中：
+### 1) テンプレの **thebibliography**（手書き・数値引用）
+テンプレ既定は `\usepackage{cite}` による **数値引用**です（全角ブラケット化済み）.   
+本文中で：
 ```latex
 ... as shown in DEM studies \cite{Cundall1979,Iwashita1998}.
 ```
-
 本文末：
 ```latex
 \begin{thebibliography}{99}
@@ -197,12 +231,23 @@ See parameters in \refTab{tab:params} and details in \refSec{sec:method}.
 \end{thebibliography}
 ```
 
+### 2) （任意）**BibTeX** を使いたい場合
+`refs.bib` を用意し, 本文末を以下に変更：
+```latex
+\bibliographystyle{unsrt} % 数値順. 学会規定に合わせて変更可
+\bibliography{refs}
+```
+コンパイルは：
+```bash
+latexmk -lualatex main.tex    # latexmk が自動で bibtex を実行
+```
+
 ---
 
 ## 章・節の入れ方
 
-- 見出しの見た目は `titlesec` で調整済み（行送りのグリッドを維持）。
-- 基本は `\section{…}`, `\subsection{…}` を使います（番号付き）。
+- 見出し体裁はテンプレで `titlesec` により調整済みです（行送りグリッド維持）. 
+- 基本は `\section{…}`, `\subsection{…}` を使用（番号付き）. 
 
 ```latex
 \section{緒言}\label{sec:intro}
@@ -212,20 +257,42 @@ See parameters in \refTab{tab:params} and details in \refSec{sec:method}.
 本文...
 ```
 
-> 見出し前後の余白はグリッドを崩さないよう最小化しています。  
-> さらに細かく分けたいときは `\subsubsection` も使えます（体裁は各自で微調整）。
+> 見出し前後の余白はグリッドを崩さないようゼロに設定済み.   
+> さらに小さい粒度が必要なら `\subsubsection` も利用できます（体裁調整は各自）. 
 
 ---
 
 ## Tips / よくある質問
 
-- **LuaLaTeX 以外は非対応**：`pdflatex` や `xelatex` ではビルドできません。`lualatex` を使ってください。
-- **フォントが違う**：Times / HaranoAji がなければ、TeX Gyre Termes / IPAex などに自動で切り替わります。
-- **図が見つからない**：`img/` を既定の検索パスにしています。別フォルダを使う場合は `\graphicspath{{path/}}` を調整してください。
+- **LuaLaTeX 以外で通りません**：`pdflatex` や `xelatex` は非対応です. 必ず `lualatex` を使ってください. 
+- **フォントが違う**：Times / HaranoAji などが無ければ, 代替（TeX Gyre Termes / IPAex）に自動フォールバックします. 
+- **図が見つからない**：`img/` を既定の検索パスにしています. 別フォルダを使う場合は `\graphicspath{{path/}}` を調整. 
+- **二段図が意図通り出ない**：`figure*` は配置制約が厳しいため, ページ上部（`[t]`）や文中の `\twocolumn[...]` 直後などで試してください. 
+- **段間が狭い／広い**：プリアンブルの `\setlength{\columnsep}{...}` と `\setlength{\ReduceCenterBy}{...}` を調整できます. 
 
 ---
 
 ## ライセンス
 
-- 本テンプレートは **MIT License** を想定しています（必要に応じて変更可）。
-- これは SPTJ/粉体工学会の**公式テンプレートではありません**。Word 体裁を **LaTeX で個人が再現**したものです。
+- 本テンプレートは **MIT License** を推奨します（必要に応じて変更してください）. 
+- SPTJ/粉体工学会の公式テンプレートではありません. 本リポは **研究者個人が Word 体裁を LaTeX で再現**したものです. 
+
+---
+
+## クイックスタート（最短手順）
+
+```bash
+# 1) 依存を整える（TeX Live 更新推奨）
+tlmgr update --self --all
+
+# 2) コンパイル
+latexmk -lualatex -interaction=nonstopmode -shell-escape main.tex
+
+# 3) 出力: main.pdf
+```
+
+---
+
+## 貢献
+
+Issue / PR 歓迎です. 体裁やマクロ追加（例：和文括弧や数式番号のカスタム等）も気軽に相談してください. 
