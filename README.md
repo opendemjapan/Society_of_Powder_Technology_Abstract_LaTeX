@@ -90,13 +90,13 @@ sudo apt-get install texlive-full
 
 ```
 .
-├─ main.tex            # あなたの本文（このテンプレの例）
+├─ genkou4.tex            # あなたの本文（このテンプレの例）
 ├─ img/                # 図フォルダ（\graphicspath{ {img/} } 済）
 │  └─ voigt_model.pdf  # 図の例
 └─ README.md
 ```
 
-`main.tex` にテンプレのプリアンブルが入っています. 
+`genkou4.tex` にテンプレのプリアンブルが入っています. 
 
 ---
 
@@ -105,11 +105,11 @@ sudo apt-get install texlive-full
 **LuaLaTeX を 2 回**流してください（参照や目次を正しく更新するため）. 
 
 ```bash
-lualatex main.tex
-lualatex main.tex
+lualatex genkou4.tex
+lualatex genkou4.tex
 ```
 
-出力：`main.pdf`
+出力：`genkou4.pdf`
 
 ---
 
