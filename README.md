@@ -243,5 +243,5 @@ See parameters in \refTab{tab:params} and details in \refSec{sec:method}.
 
 ## ライセンス
 
-- 本テンプレートは **MIT License** を想定しています（必要に応じて変更可）。
+- 本テンプレートは **MIT License** 。
 - これは SPTJ/粉体工学会の**公式テンプレートではありません**。Word 体裁を **LaTeX で個人が再現**したものです。
